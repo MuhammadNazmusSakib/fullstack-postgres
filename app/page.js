@@ -10,11 +10,20 @@ async function getPost(){
 
 export default async function Home() {
   const posts = await getPost()
-  
+  //console.log({posts})
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       {
-        <Post posts={posts}/>
+        posts.map((post) => {
+          return (
+            <Post
+            key={post.id}
+            title={post.title}
+            content={post.content}
+            authorName={post.author?.name}
+            />
+          )
+        })
       }
     </div>
   );
